@@ -79,7 +79,7 @@ export default class App extends Component {
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{ color: '#2ca0f2' }}>
                 <div className={styles.brand} />
-                <span>{config.app.title}</span>
+                <span>{this.props.userLocalLogin ? 'You have access to special data! :P' : 'You have no access to special data! :P' }</span>
               </IndexLink>
             </Navbar.Brand>
             <Navbar.Toggle />

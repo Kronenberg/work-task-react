@@ -14,6 +14,7 @@ import { Notifs, InfoBar } from 'components';
 import { push } from 'react-router-redux';
 import config from 'config';
 import { asyncConnect } from 'redux-connect';
+import { logOut } from '../Login/LoginActions';
 
 @asyncConnect([{
   promise: ({ store: { dispatch, getState } }) => {
@@ -31,7 +32,8 @@ import { asyncConnect } from 'redux-connect';
 @connect(
   state => ({
     notifs: state.notifs,
-    user: state.auth.user
+    user: state.auth.user,
+    userLocalLogin: state.localLogin.response
   }),
   { logout, pushState: push })
 export default class App extends Component {
@@ -53,20 +55,17 @@ export default class App extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (!this.props.user && nextProps.user) {
+    if (!this.props.userLocalLogin && nextProps.userLocalLogin) {
       // login
       const redirect = this.props.router.location.query && this.props.router.location.query.redirect;
       this.props.pushState(redirect || '/loginSuccess');
-    } else if (this.props.user && !nextProps.user) {
+    } else if (this.props.userLocalLogin && !nextProps.userLocalLogin) {
       // logout
       this.props.pushState('/');
     }
   }
 
-  handleLogout = event => {
-    event.preventDefault();
-    this.props.logout();
-  };
+  handleLogout = event => this.props.dispatch(logOut());
 
   render() {
     const { user, notifs, children } = this.props;
@@ -78,7 +77,7 @@ export default class App extends Component {
         <Navbar fixedTop>
           <Navbar.Header>
             <Navbar.Brand>
-              <IndexLink to="/" activeStyle={{ color: '#33e0ff' }}>
+              <IndexLink to="/" activeStyle={{ color: '#2ca0f2' }}>
                 <div className={styles.brand} />
                 <span>{config.app.title}</span>
               </IndexLink>
@@ -88,32 +87,25 @@ export default class App extends Component {
 
           <Navbar.Collapse>
             <Nav navbar>
-              {user && <LinkContainer to="/chatFeathers">
-                <NavItem>Chat with Feathers</NavItem>
-              </LinkContainer>}
-
-              <LinkContainer to="/chat">
-                <NavItem>Chat</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/widgets">
-                <NavItem>Widgets</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/survey">
-                <NavItem>Survey</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/about">
-                <NavItem>About Us</NavItem>
-              </LinkContainer>
-
-              {!user && <LinkContainer to="/login">
+              {!this.props.userLocalLogin && <LinkContainer to="/login">
                 <NavItem>Login</NavItem>
               </LinkContainer>}
-              {!user && <LinkContainer to="/register">
+              {!this.props.userLocalLogin && <LinkContainer to="/register">
                 <NavItem>Register</NavItem>
               </LinkContainer>}
-              {user && <LinkContainer to="/logout">
+              {this.props.userLocalLogin && <LinkContainer to="/">
                 <NavItem className="logout-link" onClick={this.handleLogout}>
                   Logout
+                </NavItem>
+              </LinkContainer>}
+              {this.props.userLocalLogin && <LinkContainer to="/asd">
+                <NavItem className="logout-link" onClick={this.handleLogout}>
+                  SecretOne
+                </NavItem>
+              </LinkContainer>}
+              {this.props.userLocalLogin && <LinkContainer to="/asd">
+                <NavItem className="logout-link" onClick={this.handleLogout}>
+                  SecretTwo
                 </NavItem>
               </LinkContainer>}
             </Nav>
@@ -146,23 +138,7 @@ export default class App extends Component {
         <InfoBar />
 
         <div className="well text-center">
-          Have questions? Ask for help{' '}
-          <a
-            href="https://github.com/erikras/react-redux-universal-hot-example/issues"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            on Github
-          </a>
-          {' '}or in the{' '}
-          <a
-            href="https://discord.gg/0ZcbPKXt5bZZb1Ko"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            #react-redux-universal
-          </a>
-          {' '}Discord channel.
+          There is awesome footer
         </div>
       </div>
     );

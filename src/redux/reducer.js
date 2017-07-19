@@ -6,9 +6,7 @@ import auth from './modules/auth';
 import notifs from './modules/notifs';
 import counter from './modules/counter';
 import info from './modules/info';
-// import widgets from './modules/widgets';
-// import survey from './modules/survey';
-// import chat from './modules/chat';
+import loginReducer from '../containers/Login/LoginReducer/loginReducer';
 
 export default function createReducers(asyncReducers) {
   return {
@@ -18,6 +16,7 @@ export default function createReducers(asyncReducers) {
     form,
     notifs,
     auth,
+    localLogin: loginReducer,
     counter: multireducer({
       counter1: counter,
       counter2: counter,

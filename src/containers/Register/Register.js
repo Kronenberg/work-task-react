@@ -16,28 +16,14 @@ export default class Register extends Component {
     notifSend: PropTypes.func.isRequired
   }
 
-  getInitialValues = () => {
-    const { location } = this.props;
-    return location.state && location.state.oauth;
-  }
-
-  register = data => this.props.register(data).then(this.successRegister);
-
-  successRegister = result => {
-    this.props.notifSend({
-      message: 'You\'r now registered !',
-      kind: 'success',
-      dismissAfter: 2000
-    });
-    return result;
-  }
+  register = data => console.log(data);
 
   render() {
     return (
       <div className="container">
         <Helmet title="Register" />
         <h1>Register</h1>
-        <RegisterForm onSubmit={this.register} initialValues={this.getInitialValues()} />
+        <RegisterForm onSubmit={this.register} />
       </div>
     );
   }

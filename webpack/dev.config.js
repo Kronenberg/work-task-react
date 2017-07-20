@@ -67,10 +67,6 @@ var webpackConfig = module.exports = {
   module: {
     rules: [
       {
-        test: /\.json$/,
-        use: 'json-loader'
-      },
-      {
         test: /\.jsx?$/,
         loader: 'happypack/loader?id=jsx',
         include: [path.resolve(__dirname, '../src')]

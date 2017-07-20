@@ -25,7 +25,9 @@ export default class Home extends Component {
     return (
       <div className={styles.home}>
         <Helmet title="Home" />
-        <h1>Hey wats up!</h1>
+        <div className="container">
+          <h1>Move to login page, nothing interesting here ! :P</h1>
+        </div>
       </div>
     );
   }

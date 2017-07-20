@@ -3,28 +3,40 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
-import * as authActions from 'redux/modules/auth';
-import * as notifActions from 'redux/modules/notifs';
+import { localRegister } from './RegisterActions';
 
-@connect(
-  () => ({}),
-  { ...notifActions, ...authActions })
-export default class Register extends Component {
+class Register extends Component {
   static propTypes = {
-    location: PropTypes.object.isRequired,
-    register: PropTypes.func.isRequired,
-    notifSend: PropTypes.func.isRequired
+    localRegiser: PropTypes.object
   }
 
-  register = data => console.log(data);
+  register = data => this.props.dispatch(localRegister(data));
 
   render() {
+    const { success, pending, rejected } = this.props.localRegiser;
     return (
       <div className="container">
         <Helmet title="Register" />
-        <h1>Register</h1>
-        <RegisterForm onSubmit={this.register} />
+        <h1>Register Page</h1>
+        <h4>When you create user on this page, dat user has admin credential's automaticly</h4>
+        { pending ? <img src="https://media.giphy.com/media/RHEqKwRZDwFKE/giphy.gif" alt=":D"/> : <RegisterForm onSubmit={this.register} /> }
+        <br />
+        <br />
+        <h4>{ success ? 'You are create user succesfully!!' : '' }</h4>
+        <h4>{ success ? <img src="https://media.giphy.com/media/GoIa0qRbvtYha/giphy.gif" alt="jude-aproove"/> : '' }</h4>
+        <h4>{ rejected ? 'server error' : '' }</h4>
+
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    localRegiser: state.localRegister
+  };
+}
+
+const RegisterPage = connect(mapStateToProps)(Register);
+
+export default RegisterPage;

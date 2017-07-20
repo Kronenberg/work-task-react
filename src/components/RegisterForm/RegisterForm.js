@@ -6,7 +6,7 @@ import registerValidation from './registerValidation';
 const Input = ({ input, label, type, meta: { touched, error } }) => (
   <div className={`form-group ${error && touched ? 'has-error' : ''}`}>
     <label htmlFor={input.name} className="col-sm-2">{label}</label>
-    <div className="col-sm-10">
+    <div className="col-sm-10 col-md-4 col-lg-4">
       <input {...input} type={type} className="form-control" />
       {error && touched && <span className="glyphicon glyphicon-remove form-control-feedback"></span>}
       {error && touched && <div className="text-danger"><strong>{error}</strong></div>}
@@ -28,16 +28,23 @@ export default class RegisterForm extends Component {
 
     return (
       <form className="form-horizontal" onSubmit={handleSubmit}>
-        <Field name="email" type="text" component={Input} label="Email" />
-        <Field name="password" type="password" component={Input} label="Password" />
+        <Field name="username"
+               type="text"
+               component={Input}
+               label="Username" />
         <Field
-          name="password_confirmation"
+          name="email"
+          type="email"
+          component={Input}
+          label="Email"
+        />
+        <Field
+          name="password"
           type="password"
           component={Input}
-          label="Password confirmation"
-        />
+          label="Password" />
         {error && <p className="text-danger"><strong>{error}</strong></p>}
-        <button className="btn btn-success" type="submit">
+        <button className="btn btn-primary" type="submit">
           <i className="fa fa-sign-in" />{' '}Register
         </button>
       </form>

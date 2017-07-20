@@ -7,6 +7,7 @@ import notifs from './modules/notifs';
 import counter from './modules/counter';
 import info from './modules/info';
 import loginReducer from '../containers/Login/LoginReducer/loginReducer';
+import RegisterReducer from '../containers/Register/RegisterReducers/RegisterReducer';
 
 export default function createReducers(asyncReducers) {
   return {
@@ -17,6 +18,7 @@ export default function createReducers(asyncReducers) {
     notifs,
     auth,
     localLogin: loginReducer,
+    localRegister: RegisterReducer,
     counter: multireducer({
       counter1: counter,
       counter2: counter,

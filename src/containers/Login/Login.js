@@ -38,6 +38,7 @@ class Login extends Component {
         <h4>{ success ? ` Hello it's your TOKEN FROM "JWT AUTH" its modern way to secure your data :) https://jwt.io/ - and it will be saved in your local storage, this way i found on heroku` : ''}</h4>
         <h4>{ success ? `There is your token - ${response.data.id_token}` : ''}</h4>
         <h4>{ success ? <a href="https://jwt.io/">https://jwt.io/ You can check how JWT is working! :P</a> : ''}</h4>
+        <h4>{ success ? <a href="https://hidden-bastion.herokuapp.com/">https://hidden-bastion.herokuapp.com/api/users link to the server</a> : ''}</h4>
         <h4>{ success ? `And this token already knows that you have admin credential's` : ''}</h4>
         <h1>{ rejected ? <img width="200" height="200" src="https://media.giphy.com/media/haZOqHKz9tTfW/giphy.gif" alt="error"/> : ''}</h1>
         <div>{ success ? <img src="https://media.giphy.com/media/81xwEHX23zhvy/giphy.gif" alt="fun :D"/> : ''}</div>

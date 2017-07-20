@@ -8,6 +8,7 @@ import counter from './modules/counter';
 import info from './modules/info';
 import loginReducer from '../containers/Login/LoginReducer/loginReducer';
 import RegisterReducer from '../containers/Register/RegisterReducers/RegisterReducer';
+import getAllUsers from '../containers/secretOne/secretReducers/getUsersReducer';
 
 export default function createReducers(asyncReducers) {
   return {
@@ -19,6 +20,7 @@ export default function createReducers(asyncReducers) {
     auth,
     localLogin: loginReducer,
     localRegister: RegisterReducer,
+    getAllUsers: getAllUsers,
     counter: multireducer({
       counter1: counter,
       counter2: counter,

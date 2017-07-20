@@ -98,13 +98,13 @@ export default class App extends Component {
                   Logout
                 </NavItem>
               </LinkContainer>}
-              {this.props.userLocalLogin && <LinkContainer to="/asd">
-                <NavItem className="logout-link" onClick={this.handleLogout}>
+              {this.props.userLocalLogin && <LinkContainer to="/secretOne">
+                <NavItem className="logout-link">
                   SecretOne
                 </NavItem>
               </LinkContainer>}
-              {this.props.userLocalLogin && <LinkContainer to="/asd">
-                <NavItem className="logout-link" onClick={this.handleLogout}>
+              {this.props.userLocalLogin && <LinkContainer to="/secretTwo">
+                <NavItem className="logout-link">
                   SecretTwo
                 </NavItem>
               </LinkContainer>}

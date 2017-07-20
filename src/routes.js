@@ -58,6 +58,8 @@ export default store => {
       {/* Routes disallow login */}
       <Route {...permissionsComponent(isNotAuthenticated)()}>
         <Route path="register" getComponent={() => System.import('./containers/Register/Register')} />
+        <Route path="secretOne" getComponent={() => System.import('./containers/secretOne/secretOne')} />
+        <Route path="secretTwo" getComponent={() => System.import('./containers/secretTwo/secretTwo')} />
       </Route>
 
       {/* Routes */}

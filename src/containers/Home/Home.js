@@ -27,8 +27,8 @@ export default class Home extends Component {
         <Helmet title="Home" />
         <div className="container">
           <h1>Welcome!</h1>
-          <h2> <a href="">Client: https://github.com/Kronenberg/work-task-react.git</a></h2>
-          <h2> <a href="">Server: https://github.com/Kronenberg/hapi-server.git</a></h2>
+          <h2> <a href="https://github.com/Kronenberg/work-task-react.git">Client: https://github.com/Kronenberg/work-task-react.git</a></h2>
+          <h2> <a href="https://github.com/Kronenberg/hapi-server.git">Server: https://github.com/Kronenberg/hapi-server.git</a></h2>
           <h4>You can create your own user with admin credentialns on register page</h4>
           <h4>Or you can go login page and take mine user (he is already created!)</h4>
           <h4>After login u will see two secret routes above!</h4>
